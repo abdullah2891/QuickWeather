@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="false"
+    android:background="#060606">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TableRow>
+        <ImageView android:src="@drawable/sunimage"
+            android:id="@+id/img">
+
+        </ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/txt"
+        android:textStyle="bold"
+        android:textSize="26sp"
+        android:textColor="#f3e7e7"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    </TableRow>
+    </TableLayout>
+</RelativeLayout>
