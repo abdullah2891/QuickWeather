@@ -20,6 +20,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -109,7 +110,10 @@ final public class MainActivity extends AppCompatActivity implements LocationLis
 
     }
 
-
+    private void  textSetter(int resource,String displayChar){
+        TextView display = (TextView)findViewById(resource);
+        display.setText(displayChar);
+    }
     public class DownloadTask extends AsyncTask<String,Void,String> {
         ListView listView;
         ArrayList<String> displayList;
@@ -153,6 +157,7 @@ final public class MainActivity extends AppCompatActivity implements LocationLis
             ArrayList<Integer> imageId= new ArrayList<>();
             ImageView imageView= (ImageView)findViewById(R.id.imageView);
             ArrayList<Integer> ImageId = new ArrayList<>();
+
 
             try {
                 JSONObject rawData = new JSONObject(result);
@@ -200,17 +205,22 @@ final public class MainActivity extends AppCompatActivity implements LocationLis
                     Log.i("case","default");}
 
 
+                JSONObject todayscollbar = list.getJSONObject(0);
+                String pressure = " Pressure "+todayscollbar.optString("pressure");
+                String humidity = " HUMIDITY "+todayscollbar.optString("humidity")+"%";
+                String speed = " SPEED "+todayscollbar.optString("speed")+"KM";
+                String deg = " DEGREE OF WIND "+todayscollbar.optString("deg")+(char)0x00B0;
+                String clouds = todayscollbar.optString("clouds");
+                String rain = " PROBABILITY OF RAIN: " +todayscollbar.optString("rain")+"%";
+                textSetter(R.id.humidity,humidity);textSetter(R.id.degree,deg);textSetter(R.id.rainProb,speed);
+
+
+
                 String[] display = displayList.toArray(new String[displayList.size()]);
                 ListView listview = (ListView)findViewById(R.id.forcasts);
                 customList arrayAdapter= new customList(MainActivity.this,display,ImageId);
                 listview.setAdapter(arrayAdapter);
-                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent i = new Intent(getApplicationContext(),DetailView.class);
-                        startActivity(i);
-                    }
-                });
+
 
 
 
