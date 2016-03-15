@@ -1,7 +1,10 @@
 package com.example.abdullah_rahman.quickweather;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -43,6 +46,8 @@ final public class MainActivity extends AppCompatActivity implements LocationLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         String[] forcastList = {"light rain","superStorm","End of the world"};
         ArrayList<Integer> imageId = new ArrayList<>();
 
@@ -86,7 +91,7 @@ final public class MainActivity extends AppCompatActivity implements LocationLis
                 "&units=metric" +
                 "&cnt=10" +
                 "&mode=json" +
-                "&appid=b1b15e88fa797225412429c1c50c122a";
+                "&appid=04d4d7cef325ecbcb512793e07da2802";
 
         DownloadTask task = new DownloadTask();
         task.execute(apiUrl);
@@ -193,7 +198,7 @@ final public class MainActivity extends AppCompatActivity implements LocationLis
                             detail.optString("description"));
                 }
                 temperature = temperature+(char)0x00B0 ;
-                desc = "Today "+desc;
+                desc = "TODAY "+desc;
                 TextView Temperature = (TextView)findViewById(R.id.temperature);Temperature.setText(temperature);
                 TextView Desc = (TextView)findViewById(R.id.currentWeather);Desc.setText(desc);
 
@@ -208,7 +213,7 @@ final public class MainActivity extends AppCompatActivity implements LocationLis
                 JSONObject todayscollbar = list.getJSONObject(0);
                 String pressure = " Pressure "+todayscollbar.optString("pressure");
                 String humidity = " HUMIDITY "+todayscollbar.optString("humidity")+"%";
-                String speed = " SPEED "+todayscollbar.optString("speed")+"KM";
+                String speed = " WIND SPEED "+todayscollbar.optString("speed")+"KM";
                 String deg = " DEGREE OF WIND "+todayscollbar.optString("deg")+(char)0x00B0;
                 String clouds = todayscollbar.optString("clouds");
                 String rain = " PROBABILITY OF RAIN: " +todayscollbar.optString("rain")+"%";
